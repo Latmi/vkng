@@ -10,6 +10,7 @@ import UIKit
 class LoginFormController: UIViewController {
     @IBOutlet weak var textFieldLogin: UITextField!
     @IBOutlet weak var textFieldPassword: UITextField!
+    @IBOutlet weak var btnLogin: UIButton!
     @IBOutlet weak var scrollView: UIScrollView!
     
     override func viewDidLoad() {
@@ -19,6 +20,17 @@ class LoginFormController: UIViewController {
         let hideKeyboardGesture = UITapGestureRecognizer(target: self, action: #selector(hideKeyBoard))
         // Присваиваем его UIScrollVIew
         scrollView.addGestureRecognizer(hideKeyboardGesture)
+        
+        btnLogin.layer.cornerRadius = 5
+        
+        textFieldLogin.layer.cornerRadius = 5
+        textFieldLogin.layer.borderWidth = 0.3
+        textFieldLogin.layer.borderColor = UIColor.black.cgColor
+        
+        textFieldPassword.layer.cornerRadius = 5
+        textFieldPassword.layer.borderWidth = 0.3
+        textFieldPassword.layer.borderColor = UIColor.black.cgColor
+        
             
     }
     
@@ -27,19 +39,29 @@ class LoginFormController: UIViewController {
         
     }
 
-    @IBAction func loginAction(_ sender: Any) {
-        // Получаем текст логина
-        let login = textFieldLogin.text!
-        // Получаем текст-пароль
-        let password = textFieldPassword.text!
+    
+    override func shouldPerformSegue(withIdentifier identifier: String, sender: Any?) -> Bool {
         
-        // Проверяем, верны ли они
-        if login == "admin" && password == "123456" {
-            print("успешная авторизация")
+        if (identifier == "segueAuth") {
+            
+            // Получаем текст логина
+            let login = textFieldLogin.text!
+            // Получаем текст-пароль
+            let password = textFieldPassword.text!
+            
+            // Проверяем, верны ли они
+            if login == "admin" && password == "123456" {
+                print("успешная авторизация")
+                return true
+            } else {
+                print("неуспешная авторизация")
+                return false
+            }
+            
+            
         } else {
-            print("неуспешная авторизация")
+            return true
         }
-
     }
     
     // Когда клавиатура появляется
