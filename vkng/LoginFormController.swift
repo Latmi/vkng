@@ -20,7 +20,6 @@ class LoginFormController: UIViewController {
         // Присваиваем его UIScrollVIew
         scrollView.addGestureRecognizer(hideKeyboardGesture)
             
-
     }
     
     @objc func hideKeyBoard() {
