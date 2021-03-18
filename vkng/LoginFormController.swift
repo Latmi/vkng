@@ -50,7 +50,7 @@ class LoginFormController: UIViewController {
             let password = textFieldPassword.text!
             
             // Проверяем, верны ли они
-            if login == "admin" && password == "123456" {
+            if login == "" && password == "" {
                 print("успешная авторизация")
                 return true
             } else {
